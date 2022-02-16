@@ -5,7 +5,7 @@ import Tv from "../screens/Tv";
 import Search from "../screens/Search";
 import Stack from "./Stack";
 import { useColorScheme } from "react-native";
-import { SKY_COLOR, BLACK_COLOR, GREEN_COLOR, GREY_COLOR } from "../color";
+import { LIGHT_COLOR, BLACK_COLOR, GREEN_COLOR, GREY_COLOR } from "../color";
 import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
@@ -14,14 +14,18 @@ const Tabs = () => {
   const isDark = useColorScheme() === "dark";
   return (
     <Tab.Navigator
+      sceneContainerStyle={{
+        backgroundColor: isDark ? BLACK_COLOR : LIGHT_COLOR,
+      }}
       screenOptions={{
+        unmountOnBlur: true,
         tabBarStyle: {
-          backgroundColor: isDark ? BLACK_COLOR : SKY_COLOR,
+          backgroundColor: isDark ? BLACK_COLOR : LIGHT_COLOR,
         },
         tabBarActiveTintColor: isDark ? GREEN_COLOR : GREY_COLOR,
-        tabBarInactiveTintColor: isDark ? "#808e9b" : "white",
+        tabBarInactiveTintColor: isDark ? "#808e9b" : "#a4b0be",
         headerStyle: {
-          backgroundColor: isDark ? BLACK_COLOR : SKY_COLOR,
+          backgroundColor: isDark ? BLACK_COLOR : LIGHT_COLOR,
         },
         headerTitleStyle: {
           color: isDark ? GREEN_COLOR : GREY_COLOR,
