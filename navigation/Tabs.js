@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Movies from "../screens/Movies";
 import Tv from "../screens/Tv";
 import Search from "../screens/Search";
-import Stack from "./Stack";
 import { useColorScheme } from "react-native";
 import { LIGHT_COLOR, BLACK_COLOR, GREEN_COLOR, GREY_COLOR } from "../color";
 import { Ionicons } from "@expo/vector-icons";

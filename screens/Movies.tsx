@@ -22,16 +22,8 @@ const ComingSoonTitle = styled(ListTitle)`
   margin: -15px 0px 30px 20px;
 `;
 
-const VSeparator = styled.View`
-  width: 10px;
-`;
-
 const HSeparator = styled.View`
   height: 20px;
-`;
-
-const ListContainer = styled.View`
-  margin-bottom: 40px;
 `;
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
@@ -84,6 +76,7 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
                 originalTitle={movie.original_title}
                 voteAverage={movie.vote_average}
                 overview={movie.overview}
+                fullData={movie}
               />
             ))}
           </Swiper>
@@ -102,6 +95,7 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
           originalTitle={item.original_title}
           overview={item.overview}
           releaseDate={item.release_date}
+          fullData={item}
         />
       )}
     />

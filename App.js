@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
-import { Text, Image, useColorScheme } from "react-native";
+import { Image, useColorScheme } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Asset } from "expo-asset";
 import { NavigationContainer } from "@react-navigation/native";

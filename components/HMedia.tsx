@@ -4,6 +4,7 @@ import Poster from "./Poster";
 import Votes from "./Votes";
 import { TouchableOpacity, useColorScheme } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Movie } from "../api";
 
 const HMovie = styled.View`
   padding: 0px 10px;
@@ -40,6 +41,7 @@ const Img = styled.Image`
   width: 91px;
   height: 160px;
   border-radius: 5px;
+  border: solid grey;
 `;
 
 interface HMediaProps {
@@ -48,6 +50,7 @@ interface HMediaProps {
   overview: string;
   releaseDate?: string;
   voteAverage?: number;
+  fullData: Movie;
 }
 
 const HMedia: React.FC<HMediaProps> = ({
@@ -56,6 +59,7 @@ const HMedia: React.FC<HMediaProps> = ({
   overview,
   releaseDate,
   voteAverage,
+  fullData,
 }) => {
   const isDark = useColorScheme() === "dark";
   const navigation = useNavigation();
@@ -64,7 +68,7 @@ const HMedia: React.FC<HMediaProps> = ({
     navigation.navigate("Stack", {
       screen: "Detail",
       params: {
-        originalTitle,
+        ...fullData,
       },
     });
   };
