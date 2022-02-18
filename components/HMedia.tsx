@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components/native";
 import Poster from "./Poster";
 import Votes from "./Votes";
-import { useColorScheme } from "react-native";
+import { TouchableOpacity, useColorScheme } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const HMovie = styled.View`
   padding: 0px 10px;
@@ -57,38 +58,50 @@ const HMedia: React.FC<HMediaProps> = ({
   voteAverage,
 }) => {
   const isDark = useColorScheme() === "dark";
+  const navigation = useNavigation();
+  const goToDetail = () => {
+    //@ts-ignore
+    navigation.navigate("Stack", {
+      screen: "Detail",
+      params: {
+        originalTitle,
+      },
+    });
+  };
   return (
-    <HMovie>
-      {posterPath.length > 0 ? (
-        <Poster path={posterPath} />
-      ) : (
-        <Img source={require("../assets/image/sample_img.png")} />
-      )}
-      <HColumn>
-        <Title isDark={isDark}>
-          {originalTitle.length > 30
-            ? `${originalTitle.slice(0, 30)}...`
-            : originalTitle}
-        </Title>
-        {releaseDate ? (
-          <Release isDark={isDark}>
-            {new Date(releaseDate).toLocaleDateString("ko", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}
-          </Release>
-        ) : null}
-        {voteAverage ? <Votes votes={voteAverage} /> : null}
-        <Overview isDark={isDark}>
-          {overview === ""
-            ? "No Summary"
-            : overview !== "" && overview.length > 140
-            ? overview.slice(0, 140) + "..."
-            : overview}
-        </Overview>
-      </HColumn>
-    </HMovie>
+    <TouchableOpacity onPress={goToDetail}>
+      <HMovie>
+        {posterPath.length > 0 ? (
+          <Poster path={posterPath} />
+        ) : (
+          <Img source={require("../assets/image/sample_img.png")} />
+        )}
+        <HColumn>
+          <Title isDark={isDark}>
+            {originalTitle.length > 30
+              ? `${originalTitle.slice(0, 30)}...`
+              : originalTitle}
+          </Title>
+          {releaseDate ? (
+            <Release isDark={isDark}>
+              {new Date(releaseDate).toLocaleDateString("ko", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })}
+            </Release>
+          ) : null}
+          {voteAverage ? <Votes votes={voteAverage} /> : null}
+          <Overview isDark={isDark}>
+            {overview === ""
+              ? "No Summary"
+              : overview !== "" && overview.length > 140
+              ? overview.slice(0, 140) + "..."
+              : overview}
+          </Overview>
+        </HColumn>
+      </HMovie>
+    </TouchableOpacity>
   );
 };
 

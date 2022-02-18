@@ -6,6 +6,7 @@ const Image = styled.Image`
   width: 91px;
   height: 160px;
   border-radius: 5px;
+  background-color: grey;
 `;
 
 interface PosterProps {
